@@ -16,12 +16,13 @@ import static com.codeborne.selenide.Selenide.*;
 public class Snippets {
 
   void browser_command_examples() {
-
+    // -Dselenide.baseUrl=http://github.com
     open("https://google.com");
     open("/customer/orders");
     open("/", AuthenticationType.BASIC, "user", "password");
 
     Selenide.back();
+    Selenide.refresh();
 
     Selenide.clearBrowserCookies();
     Selenide.clearBrowserLocalStorage();
@@ -50,6 +51,15 @@ public class Snippets {
     $(byText("full text")).click();
     $(withText("ull tex")).click();
 
+    $("").parent();
+    $("").sibling(1);
+    $("").preceding(1);
+    $("").closest("div");
+    $("").ancestor("div"); // the same as closest
+    $("div:last-child");
+
+
+
 
     $("div").$("h1").find(byText("abc")).click();
 
@@ -74,7 +84,9 @@ public class Snippets {
     $("").setValue("text");
     $("").append("text");
     $("").clear();
-    //
+    $("").setValue(""); // clear
+
+
     $("div").sendKeys("c"); // hotkey c on element
     actions().sendKeys("c").perform(); //hotkey c on whole application
     actions().sendKeys(Keys.chord(Keys.CONTROL, "f")).perform(); // Ctrl + F
@@ -83,6 +95,7 @@ public class Snippets {
     $("").pressEnter();
     $("").pressEscape();
     $("").pressTab();
+
 
     // complex actions with keybord and mouse, example
     actions().moveToElement($("div")).clickAndHold().moveByOffset(300, 200).release().perform();
@@ -173,6 +186,7 @@ public class Snippets {
     $$("").shouldHave(sizeLessThan(3));
     $$("").shouldHave(sizeLessThanOrEqual(2));
 
+
   }
 
   void file_operation_examples() throws FileNotFoundException {
@@ -191,5 +205,7 @@ public class Snippets {
     executeJavaScript("alert('selenide')");
     executeJavaScript("alert(arguments[0]+arguments[1])", "abc", 12);
     long fortytwo = executeJavaScript("return arguments[0]*arguments[1];", 6, 7);
+
   }
 }
+
