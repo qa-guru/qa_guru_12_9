@@ -1,10 +1,10 @@
 package selenide;
 
 import com.codeborne.selenide.*;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Keys;
 
 import java.io.*;
-import java.time.*;
+import java.time.Duration;
 
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.empty;
@@ -16,10 +16,11 @@ import static com.codeborne.selenide.Selenide.*;
 public class Snippets {
 
   void browser_command_examples() {
-    // -Dselenide.baseUrl=http://github.com
+
     open("https://google.com");
-    open("/customer/orders");
-    open("/", AuthenticationType.BASIC, "user", "password");
+    open("/customer/orders");     // -Dselenide.baseUrl=http://123.23.23.1
+    open("/", AuthenticationType.BASIC,
+            new BasicAuthCredentials("user", "password"));
 
     Selenide.back();
     Selenide.refresh();
@@ -57,9 +58,6 @@ public class Snippets {
     $("").closest("div");
     $("").ancestor("div"); // the same as closest
     $("div:last-child");
-
-
-
 
     $("div").$("h1").find(byText("abc")).click();
 
@@ -117,7 +115,6 @@ public class Snippets {
 
     //longer timeouts
     $("").shouldBe(visible, Duration.ofSeconds(30));
-    $("").waitUntil(visible, 30000);
 
 
   }
