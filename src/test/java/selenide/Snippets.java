@@ -27,6 +27,7 @@ public class Snippets {
 
     Selenide.clearBrowserCookies();
     Selenide.clearBrowserLocalStorage();
+    executeJavaScript("sessionStorage.clear();"); // no Selenide command for this yet
 
     Selenide.confirm(); // OK in alert dialogs
     Selenide.dismiss(); // Cancel in alert dialogs
@@ -51,6 +52,9 @@ public class Snippets {
 
     $(byText("full text")).click();
     $(withText("ull tex")).click();
+
+    $(byTagAndText("div","full text"));
+    $(withTagAndText("div","ull text"));
 
     $("").parent();
     $("").sibling(1);
@@ -83,7 +87,6 @@ public class Snippets {
     $("").append("text");
     $("").clear();
     $("").setValue(""); // clear
-
 
     $("div").sendKeys("c"); // hotkey c on element
     actions().sendKeys("c").perform(); //hotkey c on whole application
